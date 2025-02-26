@@ -8,7 +8,7 @@ hisat2() {
     cd "$input_dir"
     ls -1 *.gz| xargs -n2 | while read r1 r2; do 
     sample_name=${r1%.fastq*}
-    echo "hisat2 -x /ifs1/User/mahaifeng/my_work/rna-seq/ref/S_lycopersicum_chromosomes.4.00.fa -1 ${r1} -2 ${r2} -S ${sample_name}.sam -p 28;
+    echo "hisat2 -x /ifs1/User/FROST/my_work/rna-seq/ref/S_lycopersicum_chromosomes.4.00.fa -1 ${r1} -2 ${r2} -S ${sample_name}.sam -p 28;
     samtools sort -@ 28 "${sample_name}.sam" -o "${sample_name}.sorted.bam";
     samtools index -@ 28 "${sample_name}.sorted.bam";
     rm -f "${sample_name}.sam";">> hisat.sh;
