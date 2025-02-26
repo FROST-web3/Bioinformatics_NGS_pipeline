@@ -7,7 +7,7 @@ ls -1 *.bw | while read i; do
         --afterRegionStartLength 3000 \
         --numberOfProcessors 10 \
         --skipZeros \
-        -R /ifs1/User/mahaifeng/my_work/bisulfite-seq/bed/gene.bed \
+        -R /ifs1/User/my_work/bisulfite-seq/bed/gene.bed \
         -S $i \
         --missingDataAsZero \
         -o $i.gene_body.gz \
