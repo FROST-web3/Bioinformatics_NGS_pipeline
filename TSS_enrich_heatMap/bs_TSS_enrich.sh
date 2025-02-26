@@ -19,7 +19,7 @@
         }
         ' "$input_file" >> "$output_file"
 
-ls -1 *.bedGraph|while read i; do bedGraphToBigWig $i /ifs1/User/mahaifeng/my_work/bisulfite-seq/size/S_lycopersicum_chromosomes.4.00.chrom.sizes $i.bw; done
+ls -1 *.bedGraph|while read i; do bedGraphToBigWig $i /ifs1/User/my_work/bisulfite-seq/size/S_lycopersicum_chromosomes.4.00.chrom.sizes $i.bw; done
 
 
 
@@ -35,7 +35,7 @@ ls -1 *.bw | while read i; do
         --afterRegionStartLength 3000 \
         --numberOfProcessors max/2 \
         --skipZeros \
-        -R /ifs1/User/mahaifeng/my_work/bisulfite-seq/bed/gene.bed \
+        -R /ifs1/User/my_work/bisulfite-seq/bed/gene.bed \
         -S $i \
         --missingDataAsZero \
         -o $i.gene_body.gz \
