@@ -22,7 +22,7 @@ process_methylation_data() {
     # bismark比对
     cd cleanData/
     ls -1 *.fq |while read i j; do 
-        echo "bismark --genome /ifs1/User/mahaifeng/my_work/bisulfite-seq/ref --parallel 5 -o bismark_alignment/  $i  --bowtie2 --gzip">>bismark.sh
+        echo "bismark --genome /ifs1/User/my_work/bisulfite-seq/ref --parallel 5 -o bismark_alignment/  $i  --bowtie2 --gzip">>bismark.sh
     done
     sh bismark.sh
 
@@ -38,7 +38,7 @@ process_methylation_data() {
     cd deduplicate/
     ulimit -n 4096
     ls -1 *.bam|while read i; do 
-        echo "bismark_methylation_extractor --bedGraph --CX --cytosine_report --genome_folder /ifs1/User/mahaifeng/my_work/bisulfite-seq/ref --output_dir methylation_extractor/ --parallel 10 --buffer_size 10G $i">>methylation_extractor.sh
+        echo "bismark_methylation_extractor --bedGraph --CX --cytosine_report --genome_folder /ifs1/User/my_work/bisulfite-seq/ref --output_dir methylation_extractor/ --parallel 10 --buffer_size 10G $i">>methylation_extractor.sh
     done
     sh methylation_extractor.sh
 
@@ -79,7 +79,7 @@ process_methylation_data() {
     }
 
     ls -1 | while read i; do convert_to_bedgraph "$i" "$i.bedGraph"; done
-    ls -1 *.txt.bedGraph|while read i; do bedGraphToBigWig $i /ifs1/User/mahaifeng/my_work/bisulfite-seq/size/S_lycopersicum_chromosomes.4.00.chrom.sizes $i.bw; done
+    ls -1 *.txt.bedGraph|while read i; do bedGraphToBigWig $i /ifs1/User/my_work/bisulfite-seq/size/S_lycopersicum_chromosomes.4.00.chrom.sizes $i.bw; done
 
     # MethPipe软件：计算甲基化区域并生成CSV表格
     cd ../..
@@ -88,7 +88,7 @@ process_methylation_data() {
     for i in `ls -1 *.bam`; do samtools sort $i -o $i.sorted.bam -@ 28; done
 
     # 调用MethPipe软件计算甲基化水平
-    ls -1  *.sorted.bam| while read i; do methcounts -c /ifs1/User/mahaifeng/my_work/bisulfite-seq/ref/S_lycopersicum_chromosomes.4.00.fa $i > $i.meth; done
+    ls -1  *.sorted.bam| while read i; do methcounts -c /ifs1/User/my_work/bisulfite-seq/ref/S_lycopersicum_chromosomes.4.00.fa $i > $i.meth; done
     
 
     # 拆分文件
