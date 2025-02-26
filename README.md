@@ -73,5 +73,4 @@
 本项目采用MIT许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
 ## 引用
-FROST-web3. (2025). Bioinformatics_NGS_pipeline: A collection of validated NGS analysis pipelines. GitHub.
-如果您在研究中使用了这些脚本，请考虑引用本仓库：
+如果您在研究中使用了这些脚本，请考虑引用本仓库：FROST-web3. (2025). Bioinformatics_NGS_pipeline: A collection of validated NGS analysis pipelines. GitHub.
