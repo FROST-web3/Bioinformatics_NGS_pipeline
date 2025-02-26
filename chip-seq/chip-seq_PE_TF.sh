@@ -19,7 +19,7 @@ alignment_bowtie2() {
 
     # bowtie2比对
     ls -1 mi*.fastq |xargs -n2| while read i j; do
-        echo "bowtie2 -x /ifs1/User/mahaifeng/my_work/chip-seq/ref/Solanum_lycopersicum.SL3.0.dna.toplevel -1 $i -2 $j -S $i.sam -p 28" >> bowtie2.sh
+        echo "bowtie2 -x /ifs1/User/my_work/chip-seq/ref/Solanum_lycopersicum.SL3.0.dna.toplevel -1 $i -2 $j -S $i.sam -p 28" >> bowtie2.sh
     done
     sh bowtie2.sh
     rm -rf *.fastq bowtie2.sh
@@ -81,7 +81,7 @@ macs2_peak_calling() {
     #生成bw可视化文件
     ls -1 *.bdg|while read i ;do 
      sort -k1,1 -k2,2n "$i" > "$i.sorted"
-     bedGraphToBigWig "$i.sorted" /ifs1/User/mahaifeng/my_work/bisulfite-seq/tomato/chromSize/chrom.sizes "$i.bw"
+     bedGraphToBigWig "$i.sorted" /ifs1/User/my_work/bisulfite-seq/tomato/chromSize/chrom.sizes "$i.bw"
      rm -rf "$i.sorted"
     done
 
