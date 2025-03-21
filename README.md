@@ -1,76 +1,66 @@
 # Bioinformatics NGS Pipeline
 
-## 项目概述
-这个仓库包含了一系列用于下一代测序(NGS)数据分析的生物信息学流程脚本，是我在研究生期间自行总结并在课题组的数据分析中经过长期实战验证的pipeline。这些脚本涵盖了从原始数据处理到下游分析的多个方面，包括染色质免疫沉淀-测序(ChIP-seq)、双亚硫酸盐测序(Bisulfite-seq)、RNA测序(RNA-seq)和转录起始位点(TSS)富集分析等。
+## Project Overview
+This repository contains a series of bioinformatics pipeline scripts for next-generation sequencing (NGS) data analysis, which I personally developed and validated through extensive practical application in my research group during my graduate studies. These scripts cover multiple aspects from raw data processing to downstream analysis, including Chromatin Immunoprecipitation Sequencing (ChIP-seq), Bisulfite Sequencing (Bisulfite-seq), RNA Sequencing (RNA-seq), and Transcription Start Site (TSS) enrichment analysis.
 
-## 包含的流程
+## Included Pipelines
 
-### TSS 富集热图分析
-`TSS_enrich_heatMap` 目录包含用于生成转录起始位点(TSS)和转录终止位点(TES)周围富集水平热图的脚本。这对于评估ChIP-seq或ATAC-seq数据质量和可视化启动子区域的蛋白质结合模式非常有用。
+### TSS Enrichment Heatmap Analysis
+The `TSS_enrich_heatMap` directory contains scripts for generating heatmaps of enrichment levels around transcription start sites (TSS) and transcription end sites (TES). This is particularly useful for evaluating the quality of ChIP-seq or ATAC-seq data and visualizing protein binding patterns in promoter regions.
 
-### 双亚硫酸盐测序分析
-`bisulfite-seq` 目录提供了处理和分析双亚硫酸盐测序数据的脚本，用于DNA甲基化研究。
+### Bisulfite Sequencing Analysis
+The `bisulfite-seq` directory provides scripts for processing and analyzing bisulfite sequencing data for DNA methylation studies.
 
-### ChIP-seq组蛋白分析
-`chip-seq` 目录中的脚本专门用于处理ChIP-seq数据，特别关注组蛋白修饰的分析。
+### ChIP-seq Histone Analysis
+Scripts in the `chip-seq` directory are specifically designed for processing ChIP-seq data, with a focus on histone modification analysis.
 
-### tDNA插入重测序
-`resequencing_tDNA_insert` 目录包含用于分析转基因DNA(tDNA)插入位点的脚本，利用双末端(PE)测序数据。
+### tDNA Insertion Resequencing
+The `resequencing_tDNA_insert` directory contains scripts for analyzing transgenic DNA (tDNA) insertion sites using paired-end (PE) sequencing data.
 
-### RNA-seq分析
-`rna-seq` 目录提供了RNA测序数据分析的完整流程，用于基因表达研究。
+### RNA-seq Analysis
+The `rna-seq` directory provides a complete pipeline for RNA sequencing data analysis for gene expression studies.
 
-## 使用方法
+## Usage Instructions
 
-### 环境要求
-- Bash shell环境(我使用Linux系统，其余系统未尝试)
-- 生物信息学工具：流程中提到的软件皆可用bioconda下载
-- R 统计环境(用于数据可视化)
-- Python 3
+### Environment Requirements
+* Bash shell environment (I use Linux; other systems have not been tested)
+* Bioinformatics tools: All software mentioned in the pipelines can be downloaded via bioconda
+* R statistical environment (for data visualization)
+* Python 3
 
-### 如何使用
-仓库中的脚本分为两种类型：
-1. **可执行程序**：这些脚本可以直接运行，通过自定义并调用函数进行快速大规模raw_data处理
-2. **代码笔记**：类似于工作记录的代码片段集合，方便复制粘贴使用
+### How to Use
+The scripts in this repository are of two types:
+1. **Executable programs**: These scripts can be run directly, using customized functions for quick large-scale raw data processing
+2. **Code notes**: Collections of code snippets similar to work records, convenient for copy-paste usage
 
-请查看各个脚本的注释和文件头部说明以了解具体用法。大部分脚本都有详细的参数说明和使用示例。
+Please check the comments and header descriptions in each script for specific usage instructions. Most scripts include detailed parameter descriptions and usage examples.
 
-## 文件说明
+## File Descriptions
 
-### 核心功能
+### Core Functionality
+Brief description of the main scripts in each directory:
 
-各目录下的主要脚本功能简述：
+* **TSS_enrich_heatMap/**
+   * Generate signal heatmaps for gene TSS/TES regions ±x kb
+* **bisulfite-seq/**
+   * Complete pipeline from raw FASTQ files to methylation site analysis
+* **chip-seq/**
+   * Scripts specifically for histone modification ChIP-seq analysis
+* **resequencing_tDNA_insert/**
+   * Precise localization and identification of transgenic insertion sites
+* **rna-seq/**
+   * Complete pipeline from sequencing data to differential expression analysis
 
-- **TSS_enrich_heatMap/**
-  - 生成基因TSS/TES区域±x kb的信号热图
+## Frequently Asked Questions
 
-- **bisulfite-seq/**
-  - 从原始FASTQ文件到甲基化位点分析的完整流程
+* **Q: Which parameters need to be modified in the scripts?** A: Most scripts require modification of input/output paths and reference genome paths. I was lazy and didn't set these paths as variables at the beginning, but direct modification isn't too troublesome.
+* **Q: How do I install the dependent tools?** A: It's recommended to use conda/bioconda for installation, for example: `conda install -c bioconda bwa samtools bedtools`
 
-- **chip-seq/**
-  - 组蛋白修饰ChIP-seq分析专用脚本
+## Contributions and Feedback
+Questions or suggestions are welcome through Issues. If you're interested in improving these scripts, Pull Requests are also welcome.
 
-- **resequencing_tDNA_insert/**
-  - 转基因插入位点精确定位和鉴定
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-- **rna-seq/**
-  - 从测序数据到差异表达分析的完整流程
-
-## 常见问题
-
-- **Q: 脚本需要修改哪些参数？**  
-  A: 大多数脚本需要修改输入/输出路径和参考基因组路径，我很懒，没有在开头把路径做成变量，但是直接修改也不是很麻烦。
-
-- **Q: 如何安装依赖工具？**  
-  A: 推荐使用conda/bioconda安装，例如：`conda install -c bioconda bwa samtools bedtools`
-
-## 贡献与反馈
-
-欢迎通过Issues提出问题或建议。如果您对改进这些脚本有兴趣，也欢迎提交Pull Request。
-
-## 许可证
-
-本项目采用MIT许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
-## 引用
-如果您在研究中使用了这些脚本，请考虑引用本仓库：FROST-web3. (2025). Bioinformatics_NGS_pipeline: A collection of validated NGS analysis pipelines. GitHub.
+## Citation
+If you use these scripts in your research, please consider citing this repository: FROST-web3. (2025). Bioinformatics_NGS_pipeline: A collection of validated NGS analysis pipelines. GitHub.
