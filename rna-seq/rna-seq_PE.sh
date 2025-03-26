@@ -16,12 +16,12 @@ rm -f fastp.sh
 
 ###比对
 cd hisat2
-ls -1 |xargs -n 2|while read {i,j};do echo "hisat2 -x /ifs1/User/my_work/rna-seq/ref/S_lycopersicum_chromosomes.4.00.fa -1 ${i} -2 ${j} -S ${i%_clean*}.sam -p 6;samtools sort -@ 6 ${i%_clean*}.sam -o ${i%_clean*}.sorted.bam;samtools index ${i%_clean*}.sorted.bam">>hisat2.sh;done
+ls -1 |xargs -n 2|while read {i,j};do echo "hisat2 -x /path/to/reference/S_lycopersicum_chromosomes.4.00.fa -1 ${i} -2 ${j} -S ${i%_clean*}.sam -p 6;samtools sort -@ 6 ${i%_clean*}.sam -o ${i%_clean*}.sorted.bam;samtools index ${i%_clean*}.sorted.bam">>hisat2.sh;done
 parallel -j 6 -a hisat2.sh
 rm -f hisat2.sh
 
 ###记数
-featureCounts -g gene_id -a /ifs1/User/my_work/rna-seq/ref/ITAG4.0_gene_models.gtf --primary -T 28 -p -o CountMatrix.txt *.bam #改路径
+featureCounts -g gene_id -a /path/to/reference/ITAG4.0_gene_models.gtf --primary -T 28 -p -o CountMatrix.txt *.bam #改路径
 
 ###bw可视化文件
 mkdir bw
