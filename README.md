@@ -21,15 +21,10 @@ The `resequencing_tDNA_insert` directory contains scripts for analyzing transgen
 The `rna-seq` directory provides a complete pipeline for RNA sequencing data analysis for gene expression studies.
 
 ### Single-cell Sequencing Analysis
-The `singlecell` directory contains analysis pipelines for single-cell sequencing data.
+The `singlecell` directory contains analysis pipelines for single-cell sequencing data, including scripts for quality control, preprocessing, dimensionality reduction, clustering, and cell type annotation.
 
 ### Metagenomics Analysis
-The `meta-genomics` directory provides resources for analyzing metagenomic sequencing data.
-
-## Directory Structure Note
-**Important**: This repository is transitioning to use consistent lowercase naming for all directories. Please use these current folders:
-- Use `singlecell` instead of `Singlecell`
-- Use `meta-genomics` instead of `Meta-genomics`
+The `meta-genomics` directory provides resources for analyzing metagenomic sequencing data, including taxonomic classification, functional annotation, and comparative analysis tools.
 
 ## Usage Instructions
 
@@ -61,6 +56,10 @@ Brief description of the main scripts in each directory:
    * Precise localization and identification of transgenic insertion sites
 * **rna-seq/**
    * Complete pipeline from sequencing data to differential expression analysis
+* **singlecell/**
+   * Workflows for processing and analyzing single-cell RNA-seq data
+* **meta-genomics/**
+   * Tools for metagenomic data analysis and microbiome studies
 
 ## Frequently Asked Questions
 
