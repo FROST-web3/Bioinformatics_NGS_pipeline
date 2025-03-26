@@ -1,7 +1,7 @@
 #给tDNA单独建立索引
 
 #bowtie2比对
-ls -1 *.gz|xargs -n2 |while read {i,j};do echo "bowtie2 -p 28 -x /ifs1/User/my_work/tDNA/tDNA_index/tdna_GFP -S ${i%.gz}.sam -1 $i -2 $j --local --very-sensitive-local">>bowtie2.sh;done;
+ls -1 *.gz|xargs -n2 |while read {i,j};do echo "bowtie2 -p 28 -x /path/to/reference/tDNA_index/tdna_GFP -S ${i%.gz}.sam -1 $i -2 $j --local --very-sensitive-local">>bowtie2.sh;done;
 sh bowtie2.sh  
 
 #提取比对上的reads
@@ -40,7 +40,7 @@ NR > 1 {
 
 
 #比对
-nohup blastn -query filtered_tomato_parts.fa -db /ifs1/User/my_work/tDNA/tomato_ref/S_lycopersicum_chromosomes.4.00 -out blast_results.txt -outfmt 6 -evalue 1e-5 -num_threads 28 &
+nohup blastn -query filtered_tomato_parts.fa -db /path/to/reference/S_lycopersicum_chromosomes.4.00 -out blast_results.txt -outfmt 6 -evalue 1e-5 -num_threads 28 &
 
 #只要完全的匹配
 awk '$3==100{print($0)}' blast_results.txt >filtered_blast_results.txt
@@ -51,7 +51,6 @@ awk '{count[$2]++} END {print "Number of unique values: " length(count); for (va
 #blast结果转化为bed，用于IGV可视乎
 awk 'BEGIN{OFS="\t"} {if($9<$10) print $2,$9,$10,$1,".",$9<$10?"+":"-"; else print $2,$10,$9,$1,".",$9<$10?"+":"-"}' filtered_blast_results.txt > blast_results.bed
 sort -k1,1 -k2,2n blast_results.bed > sorted_blast_results.bed
-
 
 
 
@@ -97,7 +96,7 @@ awk '
 }' matched_portions.fa > filtered_80bp.fa
 
 
-nohup blastn -query filtered_80bp.fa -db /ifs1/User/my_work/tDNA/tomato_ref/S_lycopersicum_chromosomes.4.00 -out blast_results.txt -outfmt 6 -evalue 1e-5 -num_threads 28 &
+nohup blastn -query filtered_80bp.fa -db /path/to/reference/S_lycopersicum_chromosomes.4.00 -out blast_results.txt -outfmt 6 -evalue 1e-5 -num_threads 28 &
 
 #只要完全的匹配
 awk '$3==100{print($0)}' blast_results.txt >filtered_blast_results.txt
